@@ -1,6 +1,7 @@
 package com.book.booksys.model;
 
 import com.book.booksys.entity.Category;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,10 +15,12 @@ import javax.validation.constraints.NotNull;
 public class BookDto {
     @Id
     @GeneratedValue
+    @JsonProperty("id")
     private Long id;
 
     @NotNull
     @NotBlank(message = "Book Name is mandatory")
+    @JsonProperty("bookname")
     private String bookname;
 
     @NotNull

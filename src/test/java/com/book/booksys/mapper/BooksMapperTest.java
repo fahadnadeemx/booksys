@@ -13,13 +13,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BooksMapperTest {
-    public static final Long ID = 1L;
+    public static final Long id = 1L;
     public static final String bookname = "First Book";
     public static final String author = "Fahad Nadeem";
     public static final Integer price = 100;
     Category category = new Category(1, "Entertainment");
 
-    BookMapper bookMapper = BookMapper.INSTANCE;
+    IBookMapper bookMapper = IBookMapper.INSTANCE;
 
     @Test
     public void booktobookDtoReturnsNull() {
@@ -35,7 +35,7 @@ public class BooksMapperTest {
     public void BooksToBooksDto() {
         // given
         Book book = new Book();
-        book.setId(ID);
+        book.setId(id);
         book.setBookname(bookname);
         book.setAuthor(author);
         book.setPrice(price);
@@ -46,7 +46,7 @@ public class BooksMapperTest {
 
         //then
         assertNotNull(bookDto);
-        assertEquals(ID, bookDto.getId());
+        assertEquals(id, bookDto.getId());
         assertEquals(bookname, bookDto.getBookname());
         assertEquals(author, bookDto.getAuthor());
         assertEquals(price, bookDto.getPrice());
@@ -66,10 +66,10 @@ public class BooksMapperTest {
 
     @Test
     public void usersDtoToUsers() {
-        // given
+              // given
 
         BookDto bookDto = new BookDto();
-        bookDto.setId(ID);
+        bookDto.setId(id);
         bookDto.setBookname(bookname);
         bookDto.setAuthor(author);
         bookDto.setPrice(price);
@@ -79,7 +79,7 @@ public class BooksMapperTest {
         Book book = bookMapper.map(bookDto);
         //then
         assertNotNull(book);
-        assertEquals(ID, book.getId());
+        assertEquals(id, book.getId());
         assertEquals(bookname, book.getBookname());
         assertEquals(author, book.getAuthor());
         assertEquals(price, book.getPrice());
@@ -102,19 +102,16 @@ public class BooksMapperTest {
     @Test
     public void toUserDto() {
         // given
-        Book book = new Book();
-        book.setId(ID);
-        book.setBookname(bookname);
-        book.setAuthor(author);
-        book.setPrice(price);
-        book.setCategory(category);
+        List<Book> bookList = new ArrayList<>();
+        bookList.add(new Book(1L, "first", "first", 10, category));
+        bookList.add(new Book(2L, "second", "first", 20, category));
+        bookList.add(new Book(3L, "third", "first", 30, category));
 
-        List<Book> bookList =new ArrayList<>(Arrays.asList(book));
         //when
         List<BookDto> bookDtos = bookMapper.mapList(bookList);
 
         //then
+        assertEquals(3,bookDtos.size());
         assertNotNull(bookDtos);
-
     }
 }
