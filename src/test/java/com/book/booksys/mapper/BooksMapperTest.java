@@ -93,14 +93,14 @@ public class BooksMapperTest {
     }
 
     @Test
-    public void toUserDtoReturnsEmptyObject() {
+    public void toBookDtoReturnsEmptyObject() {
         List<Book> bookList = new ArrayList<>(Arrays.asList());
 
         assertNotNull(bookMapper.mapList(bookList));
     }
 
     @Test
-    public void toUserDto() {
+    public void toBookDto() {
         // given
         List<Book> bookList = new ArrayList<>();
         bookList.add(new Book(1L, "first", "first", 10, category));
