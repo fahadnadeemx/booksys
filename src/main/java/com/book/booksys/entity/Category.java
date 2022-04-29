@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 public class Category {
 
     @Id
-    private int id;
+    private Long id;
     private String name;
 
     public Category(int id, String name) {
-        this.id = id;
+        this.id = Long.valueOf(id);
         this.name = name;
     }
 }
